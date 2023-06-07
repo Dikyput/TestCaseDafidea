@@ -15,3 +15,5 @@ use App\Http\Controllers\PagesController;
 */
 
 Route::get('/', [PagesController::class, 'artikel']);
+Route::get('/artikel/{id}', [PagesController::class, 'selengkapnya']);
+Route::post('/submitkomentar', [PagesController::class, 'submitcomment'])->name('submitkomentar');
