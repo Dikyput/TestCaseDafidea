@@ -14,3 +14,4 @@ class Comment extends Model
         'comments',
     ];
 }
+    

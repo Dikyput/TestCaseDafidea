@@ -9,13 +9,20 @@ class Artikel extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title',
+        'judul',
         'content',
-        'author',
+        'image',
     ];
 
     public function penulis()
     {
         return $this->belongsTo(User::class, 'author', 'id');
     }
+
+    public function comment()
+    {
+        return $this->hasMany(Comment::class, 'post_id', 'id');
+    }
+
+    
 }

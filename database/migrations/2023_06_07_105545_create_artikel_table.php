@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->text('content');
+            $table->string('image');
             $table->unsignedBigInteger('author');
             $table->timestamps();
             $table->softDeletes();

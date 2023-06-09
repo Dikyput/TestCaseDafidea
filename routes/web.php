@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +16,16 @@ use App\Http\Controllers\PagesController;
 */
 
 Route::get('/', [PagesController::class, 'artikel']);
-Route::get('/artikel/{id}', [PagesController::class, 'selengkapnya']);
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'storelogin'])->name('storelogin');
+
 Route::post('/submitkomentar', [PagesController::class, 'submitcomment'])->name('submitkomentar');
+Route::get('/artikel/{id}', [PagesController::class, 'selengkapnya'])->name('selengkapnya');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
+    Route::get('/listartikel', [PagesController::class, 'listartikel'])->name('listartikel');
+    Route::get('/postartikel', [PagesController::class, 'postartikel'])->name('postartikel');
+    Route::post('/postartikel', [PagesController::class, 'postartikel'])->name('postartikel');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});
