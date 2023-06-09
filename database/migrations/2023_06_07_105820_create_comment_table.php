@@ -17,10 +17,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('post_id');
             $table->text('comments');
+            $table->unsignedBigInteger('author');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('post_id')->references('id')->on('artikels');
+            $table->foreign('author')->references('id')->on('users');
         });
     }
 

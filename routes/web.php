@@ -25,7 +25,8 @@ Route::get('/artikel/{id}', [PagesController::class, 'selengkapnya'])->name('sel
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
     Route::get('/listartikel', [PagesController::class, 'listartikel'])->name('listartikel');
-    Route::get('/postartikel', [PagesController::class, 'postartikel'])->name('postartikel');
     Route::post('/postartikel', [PagesController::class, 'postartikel'])->name('postartikel');
+    Route::post('/editartikel/{id}', [PagesController::class, 'editartikel'])->name('editartikel');
+    Route::post('/deleteartikel/{id}', [PagesController::class, 'deleteartikel'])->name('deleteartikel');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

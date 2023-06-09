@@ -4,11 +4,9 @@
     <div class='row'>
         @foreach($post as $post)
         <div class="col-sm-4">
-            <div class="card mb-3">
-                <div class="card-header">  
-                </div>
-                <img src="images/{{$post->image}}" class="card-img-top" alt="...">
+            <div class="card mb-3 shadow-lg">
                 <div class="card-body">
+                <img src="images/{{$post->image}}" style="height: 320px; width:100%;" class="img-fluid" alt="testcase">
                     <h5 class="card-title">{{$post->judul}}</h5>
                     <p class="card-text">{{ \Illuminate\Support\Str::limit( $post->content, 180, ' ...') }}</p>
                     <p class="card-text"><small class="text-muted">{{$post->created_at->format('D, M Y, G:i A') }}</small></p>

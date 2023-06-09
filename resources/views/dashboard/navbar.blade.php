@@ -11,16 +11,6 @@
 
           </div>
           <ul class="navbar-nav  justify-content-end">
-            <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-              </a>
-            </li>
-            <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
-              </a>
-            </li>
             <li class="nav-item d-flex align-items-center">
                 <i class="fa fa-user me-sm-1"></i>
                 <span class="d-sm-inline d-none">{{ Auth::user()->firtsname }} {{ Auth::user()->lastname }}</span>
