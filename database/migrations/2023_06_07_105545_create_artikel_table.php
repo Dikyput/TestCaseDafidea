@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->text('content');
-            $table->string('image');
+            $table->string('image')->default('pp-kosong.png');
             $table->unsignedBigInteger('author');
             $table->timestamps();
             $table->softDeletes();

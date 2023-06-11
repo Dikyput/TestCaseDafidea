@@ -43,7 +43,7 @@
                         <div class="form-group">
                         @foreach($artikel as $post)
                         <input value="{{$post->id}}" name="post_id" id="post_id" hidden>
-                        <input value="{{$post->id}}" name="author" id="post_id" hidden>
+                        <input value="{{$post->author}}" name="author" id="post_id" hidden>
                         @endforeach
                         <span class="badge rounded-pill bg-info text-dark" for="comments">TULIS KOMENTAR</span>
                             <textarea required class="form-control" id="comments" name="comments" rows="2"></textarea>
