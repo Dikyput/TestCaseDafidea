@@ -110,7 +110,7 @@ class PagesController extends Controller
 
     public function artikel(){
         $post = Artikel::orderby('created_at', 'desc')->get();
-        return view('pages.beranda', compact('post', $post));
+        return view('pages.beranda', compact('post'));
     }
 
     public function selengkapnya($id){
@@ -118,7 +118,7 @@ class PagesController extends Controller
         $artikel2 = Artikel::findOrFail($id);
         $comment = Comment::where('post_id', $id)->get();
         if($artikel2 != NULL){
-            return view('pages.artikel', compact('artikel', $artikel, 'comment'));
+            return view('pages.artikel', compact('artikel', 'comment'));
         }else{
             return redirect()->back();
         }
