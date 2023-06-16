@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Jun 2023 pada 08.39
+-- Waktu pembuatan: 16 Jun 2023 pada 15.23
 -- Versi server: 10.4.25-MariaDB
 -- Versi PHP: 8.0.23
 
@@ -43,9 +43,9 @@ CREATE TABLE `artikels` (
 --
 
 INSERT INTO `artikels` (`id`, `judul`, `content`, `image`, `author`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Test 1', 'Hanya test', 'pp-kosong.png', 1, '2023-06-10 23:34:42', '2023-06-10 23:34:42', NULL),
 (2, 'Test 2', 'Hanya Test', 'Test-Case-1686465299.jpg', 1, '2023-06-10 23:34:59', '2023-06-10 23:34:59', NULL),
-(3, 'Test 3', 'Hanya Test', 'Test-Case-1686465312.jpg', 1, '2023-06-10 23:35:12', '2023-06-10 23:35:12', NULL);
+(3, 'Test 3', 'Hanya Test', 'Test-Case-1686465312.jpg', 1, '2023-06-10 23:35:12', '2023-06-10 23:35:12', NULL),
+(9, 'Testing', '<div><strong>Test Lagi&nbsp;</strong>coba</div>', 'Test-Case-1686921788.jpg', 1, '2023-06-16 03:55:46', '2023-06-16 06:23:08', NULL);
 
 -- --------------------------------------------------------
 
@@ -70,7 +70,12 @@ CREATE TABLE `comments` (
 INSERT INTO `comments` (`id`, `post_id`, `comments`, `author`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 3, 'Aaaaaaaa', 1, '2023-06-10 23:35:28', '2023-06-10 23:35:28', NULL),
 (2, 2, 'AAAA1', 1, '2023-06-10 23:35:43', '2023-06-10 23:35:43', NULL),
-(3, 2, 'AAAA', 1, '2023-06-10 23:35:46', '2023-06-10 23:35:46', NULL);
+(3, 2, 'AAAA', 1, '2023-06-10 23:35:46', '2023-06-10 23:35:46', NULL),
+(5, 3, 'cas', 1, '2023-06-16 06:00:13', '2023-06-16 06:00:13', NULL),
+(6, 9, 'csaw', 1, '2023-06-16 06:00:39', '2023-06-16 06:00:39', NULL),
+(7, 9, 'aS', 1, '2023-06-16 06:01:30', '2023-06-16 06:01:30', NULL),
+(8, 9, 'casewq', 1, '2023-06-16 06:06:17', '2023-06-16 06:06:17', NULL),
+(9, 9, 'cwq', 1, '2023-06-16 06:13:57', '2023-06-16 06:13:57', NULL);
 
 -- --------------------------------------------------------
 
@@ -230,13 +235,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `artikels`
 --
 ALTER TABLE `artikels`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
