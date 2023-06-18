@@ -17,17 +17,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        try {
-            if (Auth::check()) {
-                $author = Auth::user();
-                $countA = Artikel::where('author', $author->id)->count();
-                $countC = Comment::where('author', $author->id)->count();
-                $title = 'Dashboard';
-                return view('dashboard.dashboard', compact( 'countA', 'countC'))->with('title', $title);
+        if (Auth::check()) {
+            $author = Auth::user();
+            $countA = Artikel::where('author', $author->id)->count();
+            $countC = Comment::where('author', $author->id)->count();
+            $title = 'Dashboard';
+            return view('dashboard.dashboard', compact( 'countA', 'countC'))->with('title', $title);
             }
-        }catch(Exception $err) {
-            dd($err->getMessage());
-        }
+        return redirect('/login')->with('diky','Silahkan Login Terlebih Dahulu');
     }
 
     /**

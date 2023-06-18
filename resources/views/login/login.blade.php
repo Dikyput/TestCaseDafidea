@@ -6,9 +6,9 @@
             <div class="col-md-6 text-center mb-5">
                 <h2 class="heading-section">Login Admin</h2>
             </div>
-             @if (session()->has('error'))
+            @if (session()->has('error'))
                 <p class="text-danger">{{ session('error') }}</p>
-              @endif
+            @endif
         </div>
             <div class="row justify-content-center">
                 <div class="col-md-7 col-lg-5">

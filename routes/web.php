@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PagesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ListArtikelController;
 use App\Http\Controllers\BerandaController;
@@ -17,19 +16,12 @@ use App\Http\Controllers\AuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('pages', BerandaController::class);
 Route::get('/', [BerandaController::class, 'index']);
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'storelogin'])->name('storelogin');
-
-Route::post('/submitkomentar', [PagesController::class, 'submitcomment'])->name('submitkomentar');
-Route::get('/artikel/{id}', [PagesController::class, 'selengkapnya'])->name('selengkapnya');
-
+Route::resource('pages', BerandaController::class);
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('listartikel', ListArtikelController::class);
-    Route::post('/postartikel', [PagesController::class, 'postartikel'])->name('postartikel');
-    Route::post('/editartikel/{id}', [PagesController::class, 'editartikel'])->name('editartikel');
-    Route::post('/deleteartikel/{id}', [PagesController::class, 'deleteartikel'])->name('deleteartikel');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

@@ -3,6 +3,16 @@
 <div class="row">
         <div class="col-12">
             <div class="card mb-4">
+                @if (session('diky'))
+                <div class="alert alert-success" role="alert">
+                    <strong style="color: white;">Success! {{ session('diky') }}</strong>
+                </div>
+                @endif
+                @if (session('diky_error'))
+                <div class="alert alert-success" role="alert">
+                    <strong style="color: white;">Error! {{ session('diky_error') }}</strong>
+                </div>
+                @endif
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="card p-3 m-3 bg-primary shadow-lg">
                     <h3 class="text-white text-center">
@@ -37,7 +47,7 @@
                                     <td style="text-align: center">{{ $post->comment->count() }}</td>
                                     <!-- Action -->
                                     <td style="text-align: center">
-                                        <a href="{{url('artikel/'.$post->id)}}" type="button" class="btn btn-sm btn-primary mt-3 btn-sm">View</a> 
+                                        <a href="{{url('pages/'.$post->id)}}" type="button" class="btn btn-sm btn-primary mt-3 btn-sm">View</a> 
                                         <a href="{{ route('listartikel.edit', $post->id) }}" type="button" class="btn btn-sm btn-info mt-3 btn-sm">Edit</a>
                                         <form action="{{ route('listartikel.destroy', $post->id) }}" method="POST" class="d-inline">
                                           @csrf

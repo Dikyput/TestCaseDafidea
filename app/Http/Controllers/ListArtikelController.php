@@ -17,19 +17,15 @@ class ListArtikelController extends Controller
      */
     public function index()
     {
-        try {
-            if (Auth::check()) {
-                $post = Artikel::orderby('created_at', 'desc')->get();
-                $postest = Artikel::orderby('created_at', 'desc')->get();
-                $postest2 = Artikel::orderby('created_at', 'desc')->get();
-                $postest3 = Artikel::orderby('created_at', 'desc')->get();
-                $title = 'LIST ARTIKEL';
-                return view('dashboard.listartikel.index', compact('post', 'postest', 'postest2', 'postest3'))->with('title', $title);
+        if (Auth::check()) {
+            $post = Artikel::orderby('created_at', 'desc')->get();
+            $postest = Artikel::orderby('created_at', 'desc')->get();
+            $postest2 = Artikel::orderby('created_at', 'desc')->get();
+            $postest3 = Artikel::orderby('created_at', 'desc')->get();
+            $title = 'LIST ARTIKEL';
+            return view('dashboard.listartikel.index', compact('post', 'postest', 'postest2', 'postest3'))->with('title', $title);
             }
-            return redirect('/login');
-        }catch(Exception $err) {
-            dd($err->getMessage());
-        }
+        return redirect('/login')->with('diky','Silahkan Login Terlebih Dahulu');
     }
     
     /**
@@ -39,15 +35,11 @@ class ListArtikelController extends Controller
      */
     public function create()
     {
-        try {
-            if (Auth::check()) {
-                $title = 'CREATE ARTIKEL';
-                return view('dashboard.listartikel.createpost')->with('title', $title);
-            }
-            return redirect('/login');
-        }catch(Exception $err) {
-            dd($err->getMessage());
+        if (Auth::check()) {
+            $title = 'CREATE ARTIKEL';
+            return view('dashboard.listartikel.createpost')->with('title', $title);
         }
+        return redirect('/login')->with('diky','Silahkan Login Terlebih Dahulu');
     }
 
     /**
@@ -74,7 +66,7 @@ class ListArtikelController extends Controller
                 Artikel::create($post);                
                 return redirect('/listartikel')->with('diky','Artikel Sukses Terposting');
             }
-            return redirect('/login');
+            return redirect('/login')->with('diky','Silahkan Login Terlebih Dahulu');
         }catch(Exception $err) {
             dd($err->getMessage());
         }
@@ -132,9 +124,9 @@ class ListArtikelController extends Controller
                     $updatepost['image'] = $filename;
                 }
                 $updatepost->save();
-                return redirect('/listartikel')->with('diky','Artikel Sukses Terposting');
+                return redirect('/listartikel')->with('diky','Artikel Sukses Terupdate');
             }
-        return redirect('/login');
+        return redirect('/login')->with('diky','Silahkan Login Terlebih Dahulu');
         }catch(Exception $err) {
             dd($err->getMessage());
         }
@@ -153,9 +145,9 @@ class ListArtikelController extends Controller
                 Comment::where(['post_id' => $id])->delete();
                 $postid = Artikel::where('id', $id);
                 $postid->delete();          
-                return redirect('/listartikel')->with('diky','Artikel Sukses Terposting');
+                return redirect('/listartikel')->with('diky','Artikel Sukses Terhapus');
             }
-            return redirect('/login');
+            return redirect('/login')->with('diky','Silahkan Login Terlebih Dahulu');
         }catch(Exception $err) {
             dd($err->getMessage());
         }

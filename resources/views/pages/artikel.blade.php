@@ -1,12 +1,19 @@
 @extends('layouts.main')
 @section('container')
-<div class="container-fluid p-5">
-    <div class='row'>
+<div class="container-fluid">
+    <div class="card-body">
+        <a href="javascript:history.back()" type="button" class="btn btn-danger m-2">Kembali</a>
+    </div>
+    <div class='row p-2'>
+                @if (session('diky'))
+                <div class="alert alert-success" role="alert">
+                    <strong style="color: white;">Success! {{ session('diky') }}</strong>
+                </div>
+                @endif
         @foreach($artikel as $post)
         <div class="col-sm-8 ">
             <div class="card mb-3 p-3">
             <div class="card-body shadow-lg">
-            <a href="javascript:history.back()" type="button" class="btn btn-danger m-2">Kembali</a>
                     <img src="../images/{{$post->image}}" class="img-fluid mx-auto d-block"></img>
                     <div class="card-body">
                     <h1 class="card-title pb-4">{{$post->judul}}</h1>
@@ -41,8 +48,8 @@
                         @csrf
                     <hr>
                     <div class="form-group">
-                    <input value="{{$post->id}}" name="post_id" id="post_id" hidden>
-                    <input value="{{$post->author}}" name="author" id="post_id" hidden>
+                        <input value="{{$post->id}}" name="post_id" id="post_id" hidden>
+                        <input value="{{$post->author}}" name="author" id="post_id" hidden>
                     <span class="badge rounded-pill bg-info text-dark" for="comments">TULIS KOMENTAR</span>
                         <textarea required class="form-control" id="comments" name="comments" rows="2"></textarea>
                     </div>

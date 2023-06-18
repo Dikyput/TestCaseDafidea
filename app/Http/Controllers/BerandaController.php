@@ -35,11 +35,15 @@ class BerandaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id = 'id')
+    public function store(Request $request)
     {
-        $input = $request->all();
-        Comment::create($input);
-        return back();
+        try{
+            $input = $request->all();
+            Comment::create($input);
+            return back()->with('diky','Komentar Sukses Terposting');
+        }catch(Exception $err) {
+            dd($err->getMessage());
+        }
     }
 
     /**
@@ -50,9 +54,13 @@ class BerandaController extends Controller
      */
     public function show($id)
     {
-        $artikel = Artikel::where('id', $id)->get();
-        $comment = Comment::where('post_id', $id)->get();
-        return view('pages.artikel', ['artikel' => $artikel, 'comment' => $comment]);
+        try{
+            $artikel = Artikel::where('id', $id)->get();
+            $comment = Comment::where('post_id', $id)->get();
+            return view('pages.artikel', ['artikel' => $artikel, 'comment' => $comment]);
+        }catch(Exception $err) {
+            dd($err->getMessage());
+        }
     }
 
     /**
