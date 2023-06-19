@@ -5,11 +5,6 @@
         <a href="javascript:history.back()" type="button" class="btn btn-danger m-2">Kembali</a>
     </div>
     <div class='row p-2'>
-                @if (session('diky'))
-                <div class="alert alert-success" role="alert">
-                    <strong style="color: white;">Success! {{ session('diky') }}</strong>
-                </div>
-                @endif
         @foreach($artikel as $post)
         <div class="col-sm-8 ">
             <div class="card mb-3 p-3">
@@ -27,11 +22,11 @@
                 </div>
             </div>
         </div>
+
         <div class="col-sm-4">
             <div class="card mb-3">
                 <div class="card-body shadow-lg">
                     <h4 class="card-title">Recent Comments</h4>
-                    <hr>
                     @foreach($comment as $comment)
                     <div class="card">
                         <div class="comment-widgets m-2">
@@ -44,50 +39,48 @@
                         </div>
                     </div>
                     @endforeach
-                    <form action="{{ route('pages.store') }}" method="POST"id="add-user-form">
+                    <div id="read" class="mt-3"></div>
+                    <form action="javascript:void(0)" id="add-commment-form">
                         @csrf
                     <hr>
                     <div class="form-group">
-                        <input value="{{$post->id}}" name="post_id" id="post_id" hidden>
-                        <input value="{{$post->author}}" name="author" id="post_id" hidden>
                     <span class="badge rounded-pill bg-info text-dark" for="comments">TULIS KOMENTAR</span>
                         <textarea required class="form-control" id="comments" name="comments" rows="2"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-success m-2">Komentar</button>
+                    <button type="submit" data-id="{{$post->id}}" data-author="{{$post->author}}" class="btn btn-success m-2">Komentar</button>
+                    </form>
                 </div>
+                @endforeach
             </div>
-            </form>
-            @endforeach
         </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
+        $('#add-commment-form').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            var button = $(this).find('button[type="submit"]');
+            formData.append('post_id', button.data('id'));
+            formData.append('author', button.data('author'));
 
-    var form = '#add-user-form';
-
-    $(form).on('submit', function(event){
-        event.preventDefault();
-
-        var url = $(this).attr('action');
-
-        $.ajax({
-            url: url,
-            method: 'POST',
-            data: new FormData(this),
-            dataType: 'JSON',
-            contentType: false,
-            cache: false,
-            processData: false,
-            success:function(response)
-            {
-                $(form).trigger("reset");
-                alert(response.success)
-            },
-            error: function(response) {
-            }
+            $.ajax({
+                url: '{{ route("pages.store") }}',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    console.log(response);
+                    location.reload();
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);ai
+                }
+            });
         });
     });
-
-});
 </script>
 @endsection

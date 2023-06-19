@@ -37,13 +37,19 @@ class BerandaController extends Controller
      */
     public function store(Request $request)
     {
-        try{
-            $input = $request->all();
-            Comment::create($input);
-            return back()->with('diky','Komentar Sukses Terposting');
-        }catch(Exception $err) {
-            dd($err->getMessage());
-        }
+        $validatedData = $request->validate([
+            'comments' => 'required',
+            'post_id' => 'required',
+            'author' => 'required',
+        ]);
+    
+        $comment = new Comment;
+        $comment->comments = $validatedData['comments'];
+        $comment->post_id = $validatedData['post_id'];
+        $comment->author = $validatedData['author'];
+        $comment->save();
+    
+        return response()->json(['message' => 'Comment berhasil ditambahkan']);
     }
 
     /**
